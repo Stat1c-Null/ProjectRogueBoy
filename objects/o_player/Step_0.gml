@@ -83,6 +83,12 @@ z += zsp;
 if(global.health < global.maxhealth) {
     global.health += 0.3
 }
+
+//Deal damage during enemy collision
+if(place_meeting(x, y, o_enemy)) {
+	global.health -= 1 
+}
+
 //Kill the player
 if(global.health <= 0){
 	room_restart()

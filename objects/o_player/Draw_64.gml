@@ -8,4 +8,5 @@ draw_sprite(s_energyBack, 1, 120, 153)
 //Draw Ammo
 draw_set_color(c_aqua)
 draw_set_font(f_text)
-draw_text(30, 250, "Ammo: " + string(handgun_ammo) + "/" + string(handgun_max_clip_cap))
+draw_text(1650, 80, "Clip: " + string(round(handgun_ammo)) + "/" + string(round(handgun_max_clip_cap)))
+draw_text(1650, 180, "HAmmo: " + string(round(handgun_current_ammo)) + "/" + string(round(handgun_max_ammo)))

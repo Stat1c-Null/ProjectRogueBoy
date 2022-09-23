@@ -20,8 +20,12 @@ x = x - lengthdir_x(recoil, image_angle)
 y = y - lengthdir_y(recoil, image_angle)
 
 //Reloading
-if(keyboard_check_pressed(ord("R")) and handgun_ammo < handgun_max_clip_cap and handgun_current_ammo > 0) {
-	var ammo_restore = handgun_max_clip_cap - handgun_ammo
+var ammo_restore = handgun_max_clip_cap - handgun_ammo
+if(keyboard_check_pressed(ord("R")) and handgun_ammo < handgun_max_clip_cap and handgun_current_ammo - ammo_restore >= 0) {
 	handgun_current_ammo -= ammo_restore
 	handgun_ammo += ammo_restore
+} else if(keyboard_check_pressed(ord("R")) and handgun_ammo < handgun_max_clip_cap and handgun_current_ammo < ammo_restore and handgun_current_ammo > 0) {
+	var last_bullets = ammo_restore - handgun_current_ammo
+	handgun_ammo += ammo_restore - last_bullets
+	handgun_current_ammo = 0
 }

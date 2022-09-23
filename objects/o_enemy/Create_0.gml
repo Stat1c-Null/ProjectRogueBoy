@@ -9,3 +9,4 @@ isAttacking = false
 followRange = 400 //Range at which enemy starts chasing player
 hsp = 0
 vsp = 0
+wander = false
