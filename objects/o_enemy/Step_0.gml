@@ -14,15 +14,17 @@ if(instance_exists(o_player)) {
 //Wandering
 if(isAttacking == false) {
 	if(wander == false) {
-		rand_x = random_range(x - 1000, x + 1000)//Generate random x in the room bounds
-		rand_y = random_range(y - 1000, y + 1000)//Generate random y in the room bounds
+		rand_x = random_range(x - 100, x + 100)//Generate random x in the room bounds
+		rand_y = random_range(y - 100, y + 100)//Generate random y in the room bounds
 		wander = true
-	} else {
+	} else if(wander == true) {
 		mp_potential_step(rand_x, rand_y, runspd, false)	
 	}
 	//Give new direction
 	if(x == rand_x and y == rand_y) {
-		wander = false	
+		rand_x = random_range(x - 100, x + 100)//Generate random x in the room bounds
+		rand_y = random_range(y - 100, y + 100)//Generate random y in the room bounds
+		wander = true
 	}
 }
 

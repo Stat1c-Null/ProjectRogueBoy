@@ -119,4 +119,4 @@ if(degree > 0 and degree < 55) {
 
 
 
-show_debug_message(degree)
+//show_debug_message(degree)
