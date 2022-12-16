@@ -41,7 +41,50 @@ repeat (steps) {
 	controller_x += x_direction
 	controller_y += y_direction
 	
+	//Make sure level gen controller doesnt move outside of the room
+	if(controller_x < 2 || controller_x >= width - 2) { //Dont go outside left and right wall2
+		controller_x += -x_direction * 2 //Go opposite direction
+	}
+	if(controller_y < 2 || controller_y >= height - 2) { //Dont go outside up and down wall2
+		controller_y += -y_direction * 2 //Go opposite direction
+	}
 	
+}
+
+//Create floor tiles
+//z is Y axis
+//v is X axis
+for (var z = 1; z < height - 1; z++) {
+	for (var v = 1; v < width - 1; v++) {
+		if(grid[# v, z] != FLOOR) {
+			var north_tile = grid[# v, z-1] == VOID
+			var west_tile = grid[# v-1, z] == VOID
+			var east_tile = grid[# v+1, z] == VOID
+			var south_tile = grid[# v, z+1] == VOID
+			
+			var tile_index = NORTH*north_tile + WEST*west_tile + EAST*east_tile+SOUTH*south_tile + 1
+			if(tile_index == 1) {
+				grid[# v, z] = FLOOR
+			}	
+		}
+	}	
+}
+
+//Create wall tiles
+//z is Y axis
+//v is X axis
+for (var z = 1; z < height - 1; z++) {
+	for (var v = 1; v < width - 1; v++) {
+		if(grid[# v, z] != FLOOR) {
+			var north_tile = grid[# v, z-1] == VOID
+			var west_tile = grid[# v-1, z] == VOID
+			var east_tile = grid[# v+1, z] == VOID
+			var south_tile = grid[# v, z+1] == VOID
+			
+			var tile_index = NORTH*north_tile + WEST*west_tile + EAST*east_tile+SOUTH*south_tile + 1
+			tilemap_set(wall_map_id, tile_index, v, z)
+		}
+	}	
 }
 
 
