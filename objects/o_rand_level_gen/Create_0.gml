@@ -1,3 +1,5 @@
+z = 0
+
 randomize()
 
 //Create surface for shadows
@@ -54,17 +56,17 @@ repeat (steps) {
 //Create floor tiles
 //z is Y axis
 //v is X axis
-for (var z = 1; z < height - 1; z++) {
+for (var c = 1; z < height - 1; c++) {
 	for (var v = 1; v < width - 1; v++) {
-		if(grid[# v, z] != FLOOR) {
-			var north_tile = grid[# v, z-1] == VOID
-			var west_tile = grid[# v-1, z] == VOID
-			var east_tile = grid[# v+1, z] == VOID
-			var south_tile = grid[# v, z+1] == VOID
+		if(grid[# v, c] != FLOOR) {
+			var north_tile = grid[# v, c-1] == VOID
+			var west_tile = grid[# v-1, c] == VOID
+			var east_tile = grid[# v+1, c] == VOID
+			var south_tile = grid[# v, c+1] == VOID
 			
 			var tile_index = NORTH*north_tile + WEST*west_tile + EAST*east_tile+SOUTH*south_tile + 1
 			if(tile_index == 1) {
-				grid[# v, z] = FLOOR
+				grid[# v, c] = FLOOR
 			}	
 		}
 	}	
@@ -73,18 +75,18 @@ for (var z = 1; z < height - 1; z++) {
 //Create wall tiles
 //z is Y axis
 //v is X axis
-for (var z = 1; z < height - 1; z++) {
+for (var c = 1; c < height - 1; c++) {
 	for (var v = 1; v < width - 1; v++) {
-		if(grid[# v, z] != FLOOR) {
-			var north_tile = grid[# v, z-1] == VOID
-			var west_tile = grid[# v-1, z] == VOID
-			var east_tile = grid[# v+1, z] == VOID
-			var south_tile = grid[# v, z+1] == VOID
+		if(grid[# v, c] != FLOOR) {
+			var north_tile = grid[# v, c-1] == VOID
+			var west_tile = grid[# v-1, c] == VOID
+			var east_tile = grid[# v+1, c] == VOID
+			var south_tile = grid[# v, c+1] == VOID
 			
 			var tile_index = NORTH*north_tile + WEST*west_tile + EAST*east_tile+SOUTH*south_tile + 1
-			tilemap_set(wall_map_id, tile_index, v, z)
+			tilemap_set(wall_map_id, tile_index, v, c)
 		}
-	}	
+	}
 }
 
 
